@@ -43,6 +43,7 @@ const resetCart = () => {
 
 const renderItems = (data) => {
     body.innerHTML = '';
+    let totalPrice = 0;
     data.forEach(({name, price, id, count}) => {
         const cardElem = document.createElement('div');
         cardElem.classList.add('food-row');
@@ -54,9 +55,11 @@ const renderItems = (data) => {
                 <span class="counter">${count}</span>
                 <button class="counter-button btn-inc" data-index="${id}">+</button>
             </div>`
-        let totalPrice = 0;
+        
+        if (count > 0) {
         totalPrice += (price*count);
         totalPriceLabel.innerHTML = ` ${totalPrice} ₽`
+        }  
         body.appendChild(cardElem);
     })
 }
